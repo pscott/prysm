@@ -71,7 +71,7 @@ func NewWallet(
 		return nil, errors.Wrap(err, "could not check if wallet exists")
 	}
 	if walletExists {
-		isEmptyWallet, err := isEmptyWallet(walletDir)
+		isEmptyWallet, err := IsEmptyWallet(walletDir)
 		if err != nil {
 			return nil, errors.Wrap(err, "could not check if wallet has files")
 		}
@@ -101,7 +101,7 @@ func OpenWallet(cliCtx *cli.Context) (*Wallet, error) {
 		return nil, errors.Wrap(err, "could not parse wallet directory")
 	}
 	if ok {
-		isEmptyWallet, err := isEmptyWallet(walletDir)
+		isEmptyWallet, err := IsEmptyWallet(walletDir)
 		if err != nil {
 			return nil, errors.Wrap(err, "could not check if wallet has files")
 		}
@@ -122,6 +122,25 @@ func OpenWallet(cliCtx *cli.Context) (*Wallet, error) {
 		accountsPath:   walletPath,
 		keymanagerKind: keymanagerKind,
 	}, nil
+}
+
+// WalletExists checks if a Prysm eth2 wallet exists at the directory.
+func WalletExists(directory string) error {
+	ok, err := fileutil.HasDir(directory)
+	if err != nil {
+		return errors.Wrap(err, "could not parse wallet directory")
+	}
+	if ok {
+		isEmptyWallet, err := IsEmptyWallet(directory)
+		if err != nil {
+			return errors.Wrap(err, "could not check if wallet has files")
+		}
+		if isEmptyWallet {
+			return ErrNoWalletFound
+		}
+		return nil
+	}
+	return ErrNoWalletFound
 }
 
 // SaveWallet persists the wallet's directories to disk.
@@ -387,7 +406,7 @@ func openOrCreateWallet(cliCtx *cli.Context, creationFunc func(cliCtx *cli.Conte
 
 // isEmptyWallet checks if a folder consists key directory such as `derived`, `remote` or `direct`.
 // Returns true if exists, false otherwise.
-func isEmptyWallet(name string) (bool, error) {
+func IsEmptyWallet(name string) (bool, error) {
 	expanded, err := fileutil.ExpandPath(name)
 	if err != nil {
 		return false, err
