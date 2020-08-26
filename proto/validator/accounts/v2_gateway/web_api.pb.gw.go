@@ -702,7 +702,7 @@ var (
 
 	pattern_Wallet_EditConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"v2", "validator", "wallet", "config", "edit"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Wallet_WalletConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v2", "validator", "wallet", "config"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Wallet_WalletConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v2", "validator", "wallet"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

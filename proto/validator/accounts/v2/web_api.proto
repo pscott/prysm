@@ -19,7 +19,7 @@ service Wallet {
     }
     rpc WalletConfig(google.protobuf.Empty) returns (WalletResponse) {
         option (google.api.http) = {
-            get: "/v2/validator/wallet/config"
+            get: "/v2/validator/wallet"
         };
     }
 }

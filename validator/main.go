@@ -61,6 +61,7 @@ var appFlags = []cli.Flag{
 	flags.UnencryptedKeysFlag,
 	flags.InteropStartIndex,
 	flags.InteropNumValidators,
+	flags.EnableWebFlag,
 	flags.RPCHost,
 	flags.RPCPort,
 	flags.GRPCGatewayPort,
