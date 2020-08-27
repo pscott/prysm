@@ -151,7 +151,7 @@ Failed to verify Prysm binary. Please erase downloads in the
 dist directory and run this script again. Alternatively, you can use a
 A prior version by specifying environment variable USE_PRYSM_VERSION
 with the specific version, as desired. Example: USE_PRYSM_VERSION=v1.0.0-alpha.5
-If you must wish to continue running an unverified binary, specific the
+If you wish to continue running an unverified binary, specify the
 environment variable PRYSM_ALLOW_UNVERIFIED_BINARIES=1
 END
     )
